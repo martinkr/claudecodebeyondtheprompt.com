@@ -1,0 +1,25 @@
+---
+// Molecule: expandable chapter entry with summary and what you build.
+import Disclosure from '../atoms/Disclosure.astro';
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Badge from '../atoms/Badge.astro';
+
+interface Props { n: number; title: string; build: string; open?: boolean }
+const { n, title, build, open } = Astro.props;
+---
+<Disclosure open={open}>
+  <Stack slot="summary" gap="xs">
+    <Eyebrow>Chapter {n}</Eyebrow>
+    <Heading level={4} size="sm">{title}</Heading>
+  </Stack>
+  <Stack gap="md">
+    <Text tone="muted"><slot /></Text>
+    <Stack direction="row" gap="sm">
+      <Text as="span" size="sm" tone="muted">You build</Text>
+      <Badge tone="accent">{build}</Badge>
+    </Stack>
+  </Stack>
+</Disclosure>

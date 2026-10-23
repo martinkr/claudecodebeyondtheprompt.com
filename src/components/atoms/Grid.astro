@@ -1,0 +1,13 @@
+---
+interface Props { cols?: 2 | 3 | 4 | 'hero' | 'split'; gap?: 'md' | 'lg'; align?: 'start' | 'center' }
+const { cols = 2, gap = 'md', align = 'start' } = Astro.props;
+const layouts = {
+  2: 'md:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+  hero: 'lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]',
+  split: 'lg:grid-cols-[18rem_minmax(0,1fr)]',
+};
+const gaps = { md: 'gap-4', lg: 'gap-10 lg:gap-12' };
+---
+<div class:list={['grid grid-cols-1 [&>*]:min-w-0', layouts[cols], gaps[gap], align === 'center' && 'items-center']}><slot /></div>

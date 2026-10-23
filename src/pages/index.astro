@@ -1,0 +1,30 @@
+---
+// Page: book landing page. Composes the template and organisms with content from data/book.ts.
+import LandingTemplate from '../templates/LandingTemplate.astro';
+import Hero from '../components/organisms/Hero.astro';
+import ShiftSection from '../components/organisms/ShiftSection.astro';
+import OutcomesSection from '../components/organisms/OutcomesSection.astro';
+import PrefaceSection from '../components/organisms/PrefaceSection.astro';
+import ContentsSection from '../components/organisms/ContentsSection.astro';
+import AuthorSection from '../components/organisms/AuthorSection.astro';
+import ClosingCta from '../components/organisms/ClosingCta.astro';
+import cover from '../assets/book-mockup.webp';
+import photo from '../assets/martin-krause.webp';
+import { book, ladder, outcomes, audience, prerequisites, conventions, parts, authorBio } from '../data/book';
+
+const markdownGuide = 'https://markdown.claudecodebeyondtheprompt.com';
+const meta = [...book.formats, `${book.publisher}`, '14 chapters'];
+---
+<LandingTemplate
+  title={`${book.title}: ${book.subtitle} — ${book.author}`}
+  description="A practical field guide to agentic engineering: move from one-off prompts to reusable Claude skills, tested workflows and supervised agents."
+  markdownGuide={markdownGuide}
+>
+  <Hero cover={cover} subtitle={book.subtitle} author={book.author} meta={meta} release={book.releaseLabel} buy={book.buy} repo={book.repo} />
+  <ShiftSection steps={ladder} />
+  <OutcomesSection items={outcomes} />
+  <PrefaceSection audience={audience} prerequisites={prerequisites} conventions={conventions} repo={book.repo} markdownGuide={markdownGuide} />
+  <ContentsSection parts={parts} />
+  <AuthorSection photo={photo} name={book.author} bio={authorBio} />
+  <ClosingCta buy={book.buy} release={book.releaseLabel} meta={meta} />
+</LandingTemplate>

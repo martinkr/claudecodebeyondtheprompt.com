@@ -1,0 +1,18 @@
+---
+// Molecule: titled card for a learning outcome.
+import Surface from '../atoms/Surface.astro';
+import Stack from '../atoms/Stack.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Mark from '../atoms/Mark.astro';
+
+interface Props { title: string; index: number }
+const { title, index } = Astro.props;
+---
+<Surface>
+  <Stack gap="sm">
+    <Text as="span" size="sm"><Mark>{String(index).padStart(2, '0')}</Mark></Text>
+    <Heading level={3} size="sm">{title}</Heading>
+    <Text tone="muted"><slot /></Text>
+  </Stack>
+</Surface>

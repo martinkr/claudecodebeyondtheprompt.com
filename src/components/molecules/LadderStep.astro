@@ -1,0 +1,19 @@
+---
+// Molecule: one rung of the prompts → agentic systems progression.
+import Stack from '../atoms/Stack.astro';
+import Diamond from '../atoms/Diamond.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+
+interface Props { step: string; title: string; chapters: string; filled?: boolean }
+const { step, title, chapters, filled } = Astro.props;
+---
+<Stack as="article" gap="md">
+  <Diamond filled={filled}>{step}</Diamond>
+  <Stack gap="xs">
+    <Eyebrow tone="muted">{chapters}</Eyebrow>
+    <Heading level={3} size="md">{title}</Heading>
+  </Stack>
+  <Text tone="muted"><slot /></Text>
+</Stack>

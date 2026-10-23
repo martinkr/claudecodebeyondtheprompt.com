@@ -1,0 +1,12 @@
+---
+// Molecule: row of facts about the edition.
+import Stack from '../atoms/Stack.astro';
+import Badge from '../atoms/Badge.astro';
+
+interface Props { items: string[]; highlight?: string }
+const { items, highlight } = Astro.props;
+---
+<Stack direction="row" gap="sm">
+  {highlight && <Badge tone="accent">{highlight}</Badge>}
+  {items.map((item) => <Badge>{item}</Badge>)}
+</Stack>

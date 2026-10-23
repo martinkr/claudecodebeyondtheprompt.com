@@ -1,0 +1,31 @@
+---
+// Organism: author bio.
+import type { ImageMetadata } from 'astro';
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Surface from '../atoms/Surface.astro';
+import Picture from '../atoms/Picture.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props { photo: ImageMetadata; name: string; bio: string[] }
+const { photo, name, bio } = Astro.props;
+---
+<Band id="author" label="author-title">
+  <Container size="md">
+    <Surface>
+      <Stack gap="lg" class="sm:flex-row sm:items-start sm:p-4">
+        <Picture src={photo} alt={`Portrait of ${name}`} variant="avatar" />
+        <Stack gap="md">
+          <Eyebrow>About the author</Eyebrow>
+          <Heading level={2} size="lg" id="author-title">{name}</Heading>
+          {bio.map((p) => <Text tone="muted">{p}</Text>)}
+          <Text size="sm">More at <Link href="https://mkrause.info">mkrause.info</Link></Text>
+        </Stack>
+      </Stack>
+    </Surface>
+  </Container>
+</Band>

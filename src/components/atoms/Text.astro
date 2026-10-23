@@ -1,0 +1,8 @@
+---
+interface Props { as?: 'p' | 'span' | 'strong' | 'em'; tone?: 'default' | 'muted' | 'accent'; size?: 'sm' | 'md' | 'lg' }
+const { as: Tag = 'p', tone = 'default', size = 'md' } = Astro.props;
+const tones = { default: 'text-snow/90', muted: 'text-muted', accent: 'text-accent' };
+const sizes = { sm: 'text-sm', md: 'text-base', lg: 'text-lg' };
+const weight = Tag === 'strong' ? 'font-semibold' : Tag === 'em' ? 'italic' : '';
+---
+<Tag class:list={[tones[tone], sizes[size], weight]}><slot /></Tag>

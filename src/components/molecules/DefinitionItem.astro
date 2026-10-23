@@ -1,0 +1,9 @@
+---
+// Molecule: bold term followed by its explanation, as a list item.
+import ListItem from '../atoms/ListItem.astro';
+import Text from '../atoms/Text.astro';
+
+interface Props { term: string }
+const { term } = Astro.props;
+---
+<ListItem><Text as="strong">{term}</Text> <Text as="span" tone="muted"><slot /></Text></ListItem>

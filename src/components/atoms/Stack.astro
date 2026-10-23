@@ -1,0 +1,16 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'header' | 'footer' | 'nav' | 'article' | 'main' | 'aside';
+  gap?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  direction?: 'col' | 'row';
+  align?: 'start' | 'center' | 'between';
+  id?: string;
+  label?: string;
+  class?: string;
+}
+const { as: Tag = 'div', gap = 'md', direction = 'col', align = 'start', id, label, class: className } = Astro.props;
+const gaps = { xs: 'gap-1', sm: 'gap-2', md: 'gap-4', lg: 'gap-8', xl: 'gap-24' };
+const directions = { col: 'flex-col', row: 'flex-row flex-wrap items-center' };
+const aligns = { start: '', center: direction === 'col' ? 'items-center text-center' : 'justify-center', between: 'justify-between' };
+---
+<Tag id={id} aria-label={label} class:list={['flex', directions[direction], gaps[gap], aligns[align], className]}><slot /></Tag>

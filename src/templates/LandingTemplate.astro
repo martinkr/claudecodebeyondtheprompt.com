@@ -1,0 +1,30 @@
+---
+// Template: document shell for the book landing page.
+import '../styles/global.css';
+import SiteHeader from '../components/organisms/SiteHeader.astro';
+import SiteFooter from '../components/organisms/SiteFooter.astro';
+import { book, nav } from '../data/book';
+
+interface Props { title: string; description: string; markdownGuide: string }
+const { title, description, markdownGuide } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="book" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteHeader nav={nav} cta={book.buy[0]} />
+    <main><slot /></main>
+    <SiteFooter author={book.author} publisher={book.publisher} markdownGuide={markdownGuide} repo={book.repo} />
+  </body>
+</html>

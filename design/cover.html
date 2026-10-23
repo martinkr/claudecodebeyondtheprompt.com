@@ -1,0 +1,106 @@
+<!doctype html>
+<!--
+  Front cover for "Claude Code Beyond the Prompt".
+  Render: design/render-cover.sh  →  src/assets/book-cover.webp
+  Canvas 1500 × 1850 px (7.5 × 9.25 in trim ratio).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800;900&family=Inter:wght@600;700;800&display=block" />
+<style>
+  :root { --ink: #0a0a0a; --orange: #ff5f2e; --snow: #fafafa; --muted: #bdbdbd; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1500px; height: 1850px; background: var(--ink); overflow: hidden; }
+  .cover {
+    position: relative; width: 1500px; height: 1850px; padding: 120px 130px 110px;
+    display: flex; flex-direction: column; color: var(--snow); font-family: "Inter", sans-serif;
+    background:
+      radial-gradient(1100px 700px at 110% 105%, rgba(255, 95, 46, .16), transparent 60%),
+      radial-gradient(900px 600px at -20% -10%, rgba(255, 255, 255, .05), transparent 60%),
+      var(--ink);
+  }
+  /* faint grid texture */
+  .cover::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+    background-image: linear-gradient(var(--snow) 1px, transparent 1px), linear-gradient(90deg, var(--snow) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 55%, transparent 100%);
+  }
+
+  .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .series { font-weight: 600; font-size: 40px; letter-spacing: .02em; padding-bottom: 16px; border-bottom: 6px solid var(--orange); }
+  .publisher { font-weight: 800; font-size: 54px; color: var(--orange); letter-spacing: -.01em; }
+
+  .title { margin-top: 80px; font-family: "Barlow Condensed", sans-serif; font-weight: 900; text-transform: uppercase; line-height: .84; letter-spacing: -.01em; }
+  .title .row { display: block; }
+  .t-claude { font-size: 300px; }
+  .t-code { font-size: 300px; }
+  .cursor { display: inline-block; width: 120px; height: 36px; margin-left: 30px; background: var(--orange); vertical-align: baseline; }
+  .rule { height: 10px; background: var(--orange); margin: 34px 0 30px; width: 100%; }
+  .t-beyond { font-size: 300px; color: var(--orange); }
+  .t-prompt { font-size: 230px; margin-top: 10px; }
+  .t-prompt .the { text-transform: none; font-weight: 800; font-size: .78em; margin-right: 18px; }
+
+  .bottom { margin-top: auto; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; }
+  .line { position: relative; height: 6px; background: var(--orange); margin-bottom: 40px; width: 560px; }
+  .line::after { content: ""; position: absolute; right: -10px; top: -9px; width: 24px; height: 24px; border-radius: 50%; background: var(--orange); }
+  .subtitle { font-weight: 700; font-size: 54px; line-height: 1.2; }
+  .author { margin-top: 120px; font-weight: 800; font-size: 50px; letter-spacing: .04em; text-transform: uppercase; }
+
+  /* progression: prompts → skills → workflows → agentic systems */
+  .steps { display: flex; gap: 14px; padding-bottom: 6px; }
+  .step { display: flex; flex-direction: column; align-items: center; width: 118px; }
+  .diamond { width: 96px; height: 96px; transform: rotate(45deg); border: 5px solid var(--orange); border-radius: 12px; display: grid; place-items: center; margin: 14px 0; }
+  .diamond svg { transform: rotate(-45deg); width: 54px; height: 54px; stroke: var(--snow); fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+  .step.final .diamond { background: var(--orange); }
+  .step.final .diamond svg { stroke: var(--ink); }
+  .stem { width: 4px; height: 70px; border-left: 4px dotted var(--orange); margin-top: 14px; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--orange); }
+  .label { margin-top: 14px; font-size: 25px; font-weight: 700; color: var(--orange); text-align: center; line-height: 1.1; height: 56px; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="top">
+      <div class="series">EXPERT INSIGHT</div>
+      <div class="publisher">&lt;packt&gt;</div>
+    </div>
+
+    <h1 class="title">
+      <span class="row t-claude">Claude</span>
+      <span class="row t-code">Code<span class="cursor"></span></span>
+      <div class="rule"></div>
+      <span class="row t-beyond">Beyond</span>
+      <span class="row t-prompt"><span class="the">the</span>Prompt</span>
+    </h1>
+
+    <div class="bottom">
+      <div>
+        <div class="line"></div>
+        <p class="subtitle">Build reusable skills<br />and agentic workflows</p>
+        <p class="author">Martin Krause</p>
+      </div>
+
+      <div class="steps" aria-label="Prompts, Skills, Workflows, Agentic Systems">
+        <div class="step">
+          <div class="diamond"><svg viewBox="0 0 48 48"><path d="M8 12h32v20H20l-8 8v-8H8z"/><path d="M16 22h16"/></svg></div>
+          <div class="stem"></div><div class="dot"></div><div class="label">Prompts</div>
+        </div>
+        <div class="step">
+          <div class="diamond"><svg viewBox="0 0 48 48"><path d="M14 6h14l8 8v28H14z"/><path d="M20 22h10M20 29h10M20 36h6"/></svg></div>
+          <div class="stem"></div><div class="dot"></div><div class="label">Skills</div>
+        </div>
+        <div class="step">
+          <div class="diamond"><svg viewBox="0 0 48 48"><rect x="6" y="8" width="12" height="10" rx="2"/><rect x="30" y="19" width="12" height="10" rx="2"/><rect x="6" y="30" width="12" height="10" rx="2"/><path d="M18 13h6v22h-6M24 24h6"/></svg></div>
+          <div class="stem"></div><div class="dot"></div><div class="label">Workflows</div>
+        </div>
+        <div class="step final">
+          <div class="diamond"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="6"/><circle cx="9" cy="10" r="4"/><circle cx="39" cy="10" r="4"/><circle cx="9" cy="38" r="4"/><circle cx="39" cy="38" r="4"/><path d="M12 13l8 7M36 13l-8 7M12 35l8-7M36 35l-8-7"/></svg></div>
+          <div class="stem"></div><div class="dot"></div><div class="label">Agentic<br />Systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

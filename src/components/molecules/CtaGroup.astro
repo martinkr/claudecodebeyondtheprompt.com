@@ -1,0 +1,11 @@
+---
+// Molecule: primary + secondary purchase buttons.
+import Stack from '../atoms/Stack.astro';
+import ButtonLink from '../atoms/ButtonLink.astro';
+
+interface Props { links: { label: string; href: string }[]; center?: boolean }
+const { links, center = false } = Astro.props;
+---
+<Stack direction="row" gap="sm" align={center ? 'center' : 'start'}>
+  {links.map((link, i) => <ButtonLink href={link.href} variant={i === 0 ? 'primary' : 'outline'} external>{link.label}</ButtonLink>)}
+</Stack>

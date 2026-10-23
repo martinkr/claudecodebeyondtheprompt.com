@@ -1,0 +1,6 @@
+---
+interface Props { size?: 'md' | 'lg' }
+const { size = 'lg' } = Astro.props;
+const widths = { md: 'max-w-3xl', lg: 'max-w-6xl' };
+---
+<div class:list={['mx-auto w-full px-4 sm:px-6', widths[size]]}><slot /></div>

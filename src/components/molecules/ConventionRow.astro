@@ -1,0 +1,13 @@
+---
+// Molecule: a typographic convention and what it means.
+import TableRow from '../atoms/TableRow.astro';
+import TableCell from '../atoms/TableCell.astro';
+import InlineCode from '../atoms/InlineCode.astro';
+
+interface Props { sample: string }
+const { sample } = Astro.props;
+---
+<TableRow>
+  <TableCell><InlineCode>{sample}</InlineCode></TableCell>
+  <TableCell><slot /></TableCell>
+</TableRow>

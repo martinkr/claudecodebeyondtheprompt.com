@@ -1,0 +1,8 @@
+---
+interface Props { ordered?: boolean; plain?: boolean; inline?: boolean; spacing?: 'sm' | 'md' }
+const { ordered = false, plain = false, inline = false, spacing = 'sm' } = Astro.props;
+const Tag = ordered ? 'ol' : 'ul';
+const marker = plain || inline ? 'list-none pl-0' : ordered ? 'list-decimal pl-6' : 'list-disc pl-6';
+const layout = inline ? 'flex flex-wrap items-center gap-x-4' : spacing === 'md' ? 'space-y-3' : 'space-y-1';
+---
+<Tag class:list={['marker:text-accent', marker, layout]}><slot /></Tag>

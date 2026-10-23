@@ -1,0 +1,85 @@
+<!doctype html>
+<!--
+  Fake 3D book mockup. Uses design/cover.png as the front face.
+  Render: design/render-cover.sh  →  src/assets/book-mockup.webp (transparent background)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Inter:wght@700;800&display=block" />
+<style>
+  /* Book dimensions: W × H × D (front 1500 × 1850 scaled to 900 × 1110) */
+  :root { --w: 900px; --h: 1110px; --d: 120px; --orange: #ff5f2e; --ink: #0a0a0a; --snow: #fafafa; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1300px; height: 1400px; background: transparent; overflow: hidden; }
+
+  .scene { width: 100%; height: 100%; display: grid; place-items: center; perspective: 2800px; perspective-origin: 30% 20%; }
+  .book {
+    position: relative; width: var(--w); height: var(--h);
+    transform-style: preserve-3d;
+    transform: rotateX(-4deg) rotateY(28deg) translateX(40px);
+  }
+  .face { position: absolute; backface-visibility: hidden; }
+
+  /* Front cover */
+  .front {
+    width: var(--w); height: var(--h); transform: translateZ(calc(var(--d) / 2));
+    background: url("cover.png") center / cover; border-radius: 0 6px 6px 0; overflow: hidden;
+  }
+  /* Lighting: soft sheen from the left, hinge crease near the spine */
+  .front::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.55) 0, rgba(255,255,255,.10) 14px, rgba(0,0,0,.25) 26px, transparent 46px),
+      linear-gradient(115deg, rgba(255,255,255,.09) 0%, transparent 35%, transparent 70%, rgba(0,0,0,.18) 100%);
+  }
+
+  /* Spine (left) */
+  .spine {
+    width: var(--d); height: var(--h); left: calc(50% - var(--d) / 2);
+    transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+    background: linear-gradient(90deg, #050505, #161616 45%, #0b0b0b);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 40px; padding: 48px 0 40px;
+  }
+  .spine-title {
+    writing-mode: vertical-rl; font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 50px;
+    text-transform: uppercase; color: var(--snow); letter-spacing: .01em; line-height: 1; white-space: nowrap;
+  }
+  .spine-title .o { color: var(--orange); }
+  .spine-title .the { text-transform: none; font-weight: 800; }
+  .spine-author { writing-mode: vertical-rl; font-family: "Inter", sans-serif; font-weight: 800; font-size: 20px; letter-spacing: .08em; color: var(--snow); }
+  .spine-pub { margin-top: auto; writing-mode: vertical-rl; font-family: "Inter", sans-serif; font-weight: 800; font-size: 24px; color: var(--orange); }
+
+  /* Page block (right) */
+  .pages {
+    width: calc(var(--d) - 8px); height: calc(var(--h) - 12px); top: 6px; left: calc(50% - (var(--d) - 8px) / 2);
+    transform: rotateY(90deg) translateZ(calc(var(--w) / 2 - 6px));
+    background: repeating-linear-gradient(90deg, #f3f0ea 0 2px, #d9d4cb 2px 3px), #eee;
+  }
+  /* Top edge */
+  .top {
+    width: calc(var(--w) - 6px); height: calc(var(--d) - 8px); top: calc(50% - (var(--d) - 8px) / 2);
+    transform: rotateX(90deg) translateZ(calc(var(--h) / 2 - 6px));
+    background: repeating-linear-gradient(0deg, #f6f3ee 0 2px, #dcd7ce 2px 3px);
+  }
+  /* Back cover (keeps the silhouette solid) */
+  .back { width: var(--w); height: var(--h); transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); background: var(--ink); }
+
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="book">
+      <div class="face back"></div>
+      <div class="face pages"></div>
+      <div class="face top"></div>
+      <div class="face spine">
+        <div class="spine-title">Claude Code <span class="o">Beyond</span> <span class="the">the</span> Prompt</div>
+        <div class="spine-author">MARTIN KRAUSE</div>
+        <div class="spine-pub">&lt;packt&gt;</div>
+      </div>
+      <div class="face front"></div>
+    </div>
+  </div>
+</body>
+</html>

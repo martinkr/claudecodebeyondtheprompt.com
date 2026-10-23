@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Design tokens — taken from the book cover (black, Packt orange, condensed display type) */
+@theme {
+  --color-ink: #0a0a0a;
+  --color-panel: #141414;
+  --color-panel-2: #1c1c1c;
+  --color-line: #2c2c2c;
+  --color-accent: #ff5f2e;
+  --color-accent-strong: #ff7a4d;
+  --color-muted: #a8a8a8;
+  --color-snow: #fafafa;
+  --color-terminal: #111111;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Inter", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+:root { color-scheme: dark; scroll-behavior: smooth; }
+body { @apply bg-ink text-snow font-sans leading-relaxed antialiased; }
+:target { scroll-margin-top: 5rem; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }

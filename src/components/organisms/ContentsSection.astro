@@ -1,0 +1,37 @@
+---
+// Organism: table of contents grouped by part.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Heading from '../atoms/Heading.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Mark from '../atoms/Mark.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+import ChapterItem from '../molecules/ChapterItem.astro';
+import type { Part } from '../../data/book';
+
+interface Props { parts: Part[] }
+const { parts } = Astro.props;
+---
+<Band id="contents" tone="panel" label="contents-title">
+  <Container>
+    <Stack gap="lg">
+      <SectionIntro id="contents-title" eyebrow="Contents">
+        <Fragment slot="title">14 chapters, <Mark>one project</Mark></Fragment>
+        Every chapter leaves you with an artifact that the next one builds on. Open a chapter to see what you’ll make.
+      </SectionIntro>
+      {parts.map((part) => (
+        <Grid cols="split" gap="lg">
+          <Stack gap="xs" class="lg:sticky lg:top-24 lg:self-start">
+            <Eyebrow tone="muted">Part {part.n}</Eyebrow>
+            <Heading level={3} size="lg">{part.title}</Heading>
+          </Stack>
+          <Stack gap="sm">
+            {part.chapters.map((c) => <ChapterItem n={c.n} title={c.title} build={c.build} open={c.n === 1}>{c.summary}</ChapterItem>)}
+          </Stack>
+        </Grid>
+      ))}
+    </Stack>
+  </Container>
+</Band>

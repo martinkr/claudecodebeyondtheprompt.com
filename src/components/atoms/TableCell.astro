@@ -1,0 +1,8 @@
+---
+interface Props { header?: boolean; align?: 'left' | 'center' | 'right' }
+const { header = false, align = 'left' } = Astro.props;
+const Tag = header ? 'th' : 'td';
+const aligns = { left: 'text-left', center: 'text-center', right: 'text-right' };
+---
+<Tag scope={header ? 'col' : undefined}
+  class:list={['px-3 py-2 align-top', aligns[align], header ? 'bg-panel-2 font-semibold text-snow' : 'text-snow/90']}><slot /></Tag>

@@ -1,0 +1,44 @@
+---
+// Organism: cover, title, promise and purchase options.
+import type { ImageMetadata } from 'astro';
+import Container from '../atoms/Container.astro';
+import Grid from '../atoms/Grid.astro';
+import Stack from '../atoms/Stack.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Mark from '../atoms/Mark.astro';
+import Picture from '../atoms/Picture.astro';
+import Link from '../atoms/Link.astro';
+import MetaList from '../molecules/MetaList.astro';
+import CtaGroup from '../molecules/CtaGroup.astro';
+
+interface Props {
+  cover: ImageMetadata;
+  subtitle: string;
+  author: string;
+  meta: string[];
+  release: string;
+  buy: { label: string; href: string }[];
+  repo: string;
+}
+const { cover, subtitle, author, meta, release, buy, repo } = Astro.props;
+---
+<Stack as="section" id="top" class="py-16 sm:py-24">
+  <Container>
+    <Grid cols="hero" gap="lg" align="center">
+      <Stack gap="lg">
+        <MetaList highlight={`Out ${release}`} items={meta} />
+        <Heading level={1}>Claude Code{" "}<Mark>Beyond</Mark>{" "}the Prompt</Heading>
+        <Stack gap="md">
+          <Text size="lg"><Text as="strong" size="lg">{subtitle}.</Text> Move from one-off prompts to skills, workflows and supervised agents you can test, share and trust.</Text>
+          <Text tone="muted">By {author} · A practical field guide to agentic engineering with Claude and Claude Code.</Text>
+        </Stack>
+        <CtaGroup links={buy} />
+        <Text tone="muted" size="sm">Companion code on <Link href={repo}>GitHub</Link>, free for every reader.</Text>
+      </Stack>
+      <Stack align="center">
+        <Picture src={cover} alt={`Cover of Claude Code Beyond the Prompt by ${author}`} eager />
+      </Stack>
+    </Grid>
+  </Container>
+</Stack>

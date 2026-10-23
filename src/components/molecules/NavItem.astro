@@ -1,0 +1,9 @@
+---
+// Molecule: navigation entry.
+import ListItem from '../atoms/ListItem.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props { href: string }
+const { href } = Astro.props;
+---
+<ListItem><Link href={href} variant="nav"><slot /></Link></ListItem>

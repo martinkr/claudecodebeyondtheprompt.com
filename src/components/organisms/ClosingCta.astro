@@ -1,0 +1,24 @@
+---
+// Organism: final call to action.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Mark from '../atoms/Mark.astro';
+import CtaGroup from '../molecules/CtaGroup.astro';
+import MetaList from '../molecules/MetaList.astro';
+
+interface Props { buy: { label: string; href: string }[]; release: string; meta: string[] }
+const { buy, release, meta } = Astro.props;
+---
+<Band tone="panel" label="cta-title">
+  <Container size="md">
+    <Stack gap="lg" align="center">
+      <Heading level={2} id="cta-title">Stop re-prompting. <Mark>Start engineering.</Mark></Heading>
+      <Text tone="muted" size="lg">Out {release} from Packt. Pre-order now and get the book on release day.</Text>
+      <CtaGroup links={buy} center />
+      <MetaList items={meta} />
+    </Stack>
+  </Container>
+</Band>

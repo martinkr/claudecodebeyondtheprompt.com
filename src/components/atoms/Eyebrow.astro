@@ -1,0 +1,5 @@
+---
+interface Props { tone?: 'accent' | 'muted' }
+const { tone = 'accent' } = Astro.props;
+---
+<span class:list={['text-xs font-extrabold uppercase tracking-[0.13em]', tone === 'accent' ? 'text-accent' : 'text-muted']}><slot /></span>

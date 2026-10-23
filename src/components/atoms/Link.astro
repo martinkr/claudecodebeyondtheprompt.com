@@ -1,0 +1,10 @@
+---
+interface Props { href: string; variant?: 'inline' | 'nav' | 'brand' }
+const { href, variant = 'inline' } = Astro.props;
+const variants = {
+  inline: 'text-accent underline underline-offset-4 hover:text-accent-strong',
+  nav: 'block rounded-md px-2 py-2 text-sm font-medium text-muted hover:text-accent',
+  brand: 'inline-block py-2 font-display text-2xl font-extrabold uppercase tracking-tight text-snow',
+};
+---
+<a href={href} class={variants[variant]}><slot /></a>

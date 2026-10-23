@@ -1,0 +1,102 @@
+---
+// Organism: preface — audience, requirements, example code and conventions.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Surface from '../atoms/Surface.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Mark from '../atoms/Mark.astro';
+import List from '../atoms/List.astro';
+import ListItem from '../atoms/ListItem.astro';
+import Link from '../atoms/Link.astro';
+import InlineCode from '../atoms/InlineCode.astro';
+import Table from '../atoms/Table.astro';
+import ButtonLink from '../atoms/ButtonLink.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+import DefinitionItem from '../molecules/DefinitionItem.astro';
+import ConventionRow from '../molecules/ConventionRow.astro';
+
+interface Props {
+  audience: string[];
+  prerequisites: { label: string; detail: string }[];
+  conventions: { sample: string; text: string }[];
+  repo: string;
+  markdownGuide: string;
+}
+const { audience, prerequisites, conventions, repo, markdownGuide } = Astro.props;
+---
+<Band id="preface" label="preface-title">
+  <Container>
+    <Stack gap="lg">
+      <SectionIntro id="preface-title" eyebrow="Preface">
+        <Fragment slot="title">Before you <Mark>begin</Mark></Fragment>
+        This book is hands-on from page one. Each chapter adds a level to the same project, so you finish
+        with working artifacts, not just notes.
+      </SectionIntro>
+
+      <Grid cols={2}>
+        <Surface>
+          <Stack gap="md">
+            <Heading level={3} size="md">Who this book is for</Heading>
+            <List spacing="md">{audience.map((line) => <ListItem>{line}</ListItem>)}</List>
+            <Text tone="muted">
+              You don’t need a machine learning background. If you’ve used Claude or another chat assistant and
+              tried a few prompts, you’re ready.
+            </Text>
+          </Stack>
+        </Surface>
+
+        <Surface>
+          <Stack gap="md">
+            <Heading level={3} size="md">To get the most out of this book</Heading>
+            <List spacing="md">{prerequisites.map((p) => <DefinitionItem term={p.label}>{p.detail}</DefinitionItem>)}</List>
+          </Stack>
+        </Surface>
+
+        <Surface>
+          <Stack gap="md">
+            <Heading level={3} size="md">The example project</Heading>
+            <Text>
+              All examples use <Text as="strong">ToDo Mate</Text>, a small Vite and TypeScript todo app that saves
+              to <InlineCode>localStorage</InlineCode>. It comes with real bugs to investigate, from a blank page on
+              load to tasks that vanish after a refresh.
+            </Text>
+            <Text>
+              It runs alongside <Link href="https://kamori.io">Kamori</Link>, a lightweight, self-hosted log server
+              with a native MCP interface. Early on, you paste Kamori’s logs in as evidence. Later, Claude Code
+              queries them directly.
+            </Text>
+          </Stack>
+        </Surface>
+
+        <Surface>
+          <Stack gap="md">
+            <Heading level={3} size="md">Download the example code</Heading>
+            <Text>
+              The repository has one folder per chapter. Each folder holds the app as it stands in that chapter,
+              plus the skills, workflows and Claude Code configuration you build there.
+            </Text>
+            <Stack direction="row" gap="sm">
+              <ButtonLink href={repo} variant="outline" external>Companion repository</ButtonLink>
+            </Stack>
+          </Stack>
+        </Surface>
+      </Grid>
+
+      <Surface padded={false}>
+        <Stack gap="md" class="p-5">
+          <Heading level={3} size="md">Conventions used</Heading>
+          <Text tone="muted">
+            Skills, workflows and <InlineCode>CLAUDE.md</InlineCode> files are all Markdown. New to Markdown? Start with
+            our <Link href={markdownGuide}>Markdown basics reference</Link>.
+          </Text>
+        </Stack>
+        <Table>
+          <tbody>{conventions.map((c) => <ConventionRow sample={c.sample}>{c.text}</ConventionRow>)}</tbody>
+        </Table>
+      </Surface>
+    </Stack>
+  </Container>
+</Band>

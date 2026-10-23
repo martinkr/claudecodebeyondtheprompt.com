@@ -1,0 +1,5 @@
+---
+interface Props { tone?: 'ink' | 'panel'; id?: string; label?: string }
+const { tone = 'ink', id, label } = Astro.props;
+---
+<section id={id} aria-labelledby={label} class:list={['py-20 sm:py-24 border-t border-line', tone === 'panel' ? 'bg-panel' : 'bg-ink']}><slot /></section>

@@ -1,0 +1,26 @@
+---
+// Organism: what readers will be able to do.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Mark from '../atoms/Mark.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+import FeatureCard from '../molecules/FeatureCard.astro';
+
+interface Props { items: { title: string; text: string }[] }
+const { items } = Astro.props;
+---
+<Band tone="panel" label="learn-title">
+  <Container>
+    <Stack gap="lg">
+      <SectionIntro id="learn-title" eyebrow="What you’ll learn">
+        <Fragment slot="title">Skills you keep <Mark>when the tools change</Mark></Fragment>
+        Claude is the lens, but the patterns carry over to other agents too, including Copilot and Codex.
+      </SectionIntro>
+      <Grid cols={3}>
+        {items.map((item, i) => <FeatureCard index={i + 1} title={item.title}>{item.text}</FeatureCard>)}
+      </Grid>
+    </Stack>
+  </Container>
+</Band>

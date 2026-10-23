@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props { src: ImageMetadata; alt: string; variant?: 'cover' | 'avatar'; eager?: boolean }
+const { src, alt, variant = 'cover', eager = false } = Astro.props;
+const variants = {
+  cover: 'w-full max-w-sm h-auto drop-shadow-[0_40px_60px_rgba(255,95,46,0.16)]',
+  avatar: 'size-28 rounded-full border-2 border-accent object-cover',
+};
+---
+<Image src={src} alt={alt} class={variants[variant]} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined}
+  widths={variant === 'avatar' ? [112, 220] : [384, 874]} sizes={variant === 'avatar' ? '112px' : '(min-width: 1024px) 384px, 90vw'} />

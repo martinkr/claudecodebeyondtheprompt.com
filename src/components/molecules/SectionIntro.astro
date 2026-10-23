@@ -1,0 +1,16 @@
+---
+// Molecule: eyebrow + heading + optional lead that opens a section.
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+
+interface Props { id: string; eyebrow: string; center?: boolean }
+const { id, eyebrow, center = false } = Astro.props;
+const hasLead = Astro.slots.has('default');
+---
+<Stack gap="md" align={center ? 'center' : 'start'} class="max-w-3xl">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <Heading level={2} id={id}><slot name="title" /></Heading>
+  {hasLead && <Text tone="muted" size="lg"><slot /></Text>}
+</Stack>

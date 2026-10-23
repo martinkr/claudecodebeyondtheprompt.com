@@ -1,0 +1,34 @@
+---
+// Organism: the book's central argument as the cover's four-step progression.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Mark from '../atoms/Mark.astro';
+import Blockquote from '../atoms/Blockquote.astro';
+import Text from '../atoms/Text.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+import LadderStep from '../molecules/LadderStep.astro';
+
+interface Props { steps: { step: string; title: string; text: string; chapters: string }[] }
+const { steps } = Astro.props;
+---
+<Band id="shift" label="shift-title">
+  <Container>
+    <Stack gap="xl">
+      <SectionIntro id="shift-title" eyebrow="The shift">
+        <Fragment slot="title">From prompt engineering to <Mark>agentic engineering</Mark></Fragment>
+        Prompting collapsed the search-and-assemble loop into a single question. But a prompt is tied to one
+        problem, depends on the context you remember to give it, and doesn’t come out the same way twice.
+        This book follows one path from there to supervised agents, one level at a time.
+      </SectionIntro>
+      <Grid cols={4} gap="lg">
+        {steps.map((s, i) => <LadderStep step={s.step} title={s.title} chapters={s.chapters} filled={i === steps.length - 1}>{s.text}</LadderStep>)}
+      </Grid>
+      <Blockquote>
+        <Text size="lg">Don’t start by asking “Can I make this an agent?” Ask “What loop does this task need?”</Text>
+        <Text tone="muted" size="sm">— from Chapter 2</Text>
+      </Blockquote>
+    </Stack>
+  </Container>
+</Band>

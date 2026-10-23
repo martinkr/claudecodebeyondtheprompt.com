@@ -1,0 +1,24 @@
+---
+// Organism: sticky top bar with in-page navigation and pre-order CTA.
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Link from '../atoms/Link.astro';
+import List from '../atoms/List.astro';
+import ButtonLink from '../atoms/ButtonLink.astro';
+import Mark from '../atoms/Mark.astro';
+import NavItem from '../molecules/NavItem.astro';
+
+interface Props { nav: { href: string; label: string }[]; cta: { label: string; href: string } }
+const { nav, cta } = Astro.props;
+---
+<Stack as="header" class="sticky top-0 z-20 border-b border-line bg-ink/85 backdrop-blur">
+  <Container>
+    <Stack direction="row" align="between" gap="md" class="py-2">
+      <Link href="#top" variant="brand">Claude Code{" "}<Mark>Beyond</Mark>{" "}the Prompt</Link>
+      <Stack as="nav" direction="row" gap="md" label="Main" class="max-md:hidden">
+        <List inline>{nav.map((item) => <NavItem href={item.href}>{item.label}</NavItem>)}</List>
+        <ButtonLink href={cta.href} external>Pre-order</ButtonLink>
+      </Stack>
+    </Stack>
+  </Container>
+</Stack>

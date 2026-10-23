@@ -1,0 +1,22 @@
+---
+// Organism: footer.
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Text from '../atoms/Text.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props { author: string; publisher: string; markdownGuide: string; repo: string }
+const { author, publisher, markdownGuide, repo } = Astro.props;
+---
+<Stack as="footer" class="border-t border-line py-10">
+  <Container>
+    <Stack direction="row" align="between" gap="md">
+      <Text tone="muted" size="sm">© {new Date().getFullYear()} {author} · Published by {publisher}</Text>
+      <Stack direction="row" gap="md">
+        <Text as="span" size="sm"><Link href={markdownGuide}>Markdown basics</Link></Text>
+        <Text as="span" size="sm"><Link href={repo}>Example code</Link></Text>
+        <Text as="span" size="sm"><Link href="https://mkrause.info">mkrause.info</Link></Text>
+      </Stack>
+    </Stack>
+  </Container>
+</Stack>

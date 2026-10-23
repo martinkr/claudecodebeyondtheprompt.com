@@ -1,0 +1,12 @@
+---
+// Native <details>: accessible expand/collapse without JavaScript.
+interface Props { open?: boolean }
+const { open = false } = Astro.props;
+---
+<details open={open} class="group rounded-xl border border-line bg-panel transition open:border-accent/50">
+  <summary class="flex cursor-pointer list-none items-start gap-4 p-5 [&::-webkit-details-marker]:hidden">
+    <span class="flex-1"><slot name="summary" /></span>
+    <span aria-hidden="true" class="mt-1 text-xl leading-none text-accent transition group-open:rotate-45">+</span>
+  </summary>
+  <div class="px-5 pb-5"><slot /></div>
+</details>

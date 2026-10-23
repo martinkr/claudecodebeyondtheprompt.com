@@ -1,0 +1,10 @@
+---
+interface Props { tone?: 'panel' | 'terminal' | 'accent'; padded?: boolean }
+const { tone = 'panel', padded = true } = Astro.props;
+const tones = {
+  panel: 'bg-panel border-line',
+  terminal: 'bg-terminal border-line',
+  accent: 'bg-accent/10 border-accent/40',
+};
+---
+<div class:list={['rounded-xl border overflow-hidden', tones[tone], padded && 'p-5']}><slot /></div>

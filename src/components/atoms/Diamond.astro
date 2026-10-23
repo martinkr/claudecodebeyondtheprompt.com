@@ -1,0 +1,9 @@
+---
+// The cover's diamond motif, used as a step marker.
+interface Props { filled?: boolean }
+const { filled = false } = Astro.props;
+---
+<span aria-hidden="true" class:list={['grid size-12 shrink-0 rotate-45 place-items-center rounded-md border-2 border-accent',
+  filled ? 'bg-accent text-ink' : 'bg-ink text-accent']}>
+  <span class="-rotate-45 font-display text-lg font-extrabold"><slot /></span>
+</span>
