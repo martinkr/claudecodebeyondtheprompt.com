@@ -1,0 +1,24 @@
+---
+// Decorative full-bleed image behind a section (the cover's light wave), faded into the page colour.
+// The parent needs `relative isolate overflow-hidden`.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props { src: ImageMetadata; fade?: 'hero' | 'band'; flip?: boolean; eager?: boolean }
+const { src, fade = 'hero', flip = false, eager = false } = Astro.props;
+const fades = {
+  hero: 'bg-[linear-gradient(90deg,var(--color-ink)_0%,color-mix(in_oklab,var(--color-ink)_88%,transparent)_42%,transparent_78%),linear-gradient(180deg,var(--color-ink)_0%,transparent_30%,transparent_80%,var(--color-ink)_100%)]',
+  band: 'bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-panel)_88%,transparent)_0%,color-mix(in_oklab,var(--color-panel)_55%,transparent)_55%,transparent_100%),linear-gradient(180deg,var(--color-panel)_0%,transparent_35%)]',
+};
+const placement = {
+  hero: 'object-[70%_60%] max-lg:opacity-60',
+  band: 'object-[50%_45%] opacity-70',
+};
+---
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+  <Picture src={src} alt="" formats={['avif']} fallbackFormat="webp" quality={55} widths={[768, 1280, 1920]} sizes="100vw"
+    loading={eager ? 'eager' : 'lazy'} decoding="async"
+    pictureAttributes={{ class: 'contents' }}
+    class:list={['size-full object-cover', placement[fade], flip && '-scale-x-100']} />
+  <div class:list={['absolute inset-0', fades[fade]]}></div>
+</div>

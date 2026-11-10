@@ -8,12 +8,14 @@ import Heading from '../atoms/Heading.astro';
 import Text from '../atoms/Text.astro';
 import Mark from '../atoms/Mark.astro';
 import Picture from '../atoms/Picture.astro';
+import Backdrop from '../atoms/Backdrop.astro';
 import Link from '../atoms/Link.astro';
 import MetaList from '../molecules/MetaList.astro';
 import CtaGroup from '../molecules/CtaGroup.astro';
 
 interface Props {
   cover: ImageMetadata;
+  wave: ImageMetadata;
   subtitle: string;
   author: string;
   meta: string[];
@@ -21,16 +23,17 @@ interface Props {
   buy: { label: string; href: string }[];
   repo: string;
 }
-const { cover, subtitle, author, meta, release, buy, repo } = Astro.props;
+const { cover, wave, subtitle, author, meta, release, buy, repo } = Astro.props;
 ---
-<Stack as="section" id="top" class="py-16 sm:py-24">
+<Stack as="section" id="top" class="relative isolate overflow-hidden py-16 sm:py-24 lg:py-28">
+  <Backdrop src={wave} eager />
   <Container>
     <Grid cols="hero" gap="lg" align="center">
       <Stack gap="lg">
         <MetaList highlight={`Out ${release}`} items={meta} />
         <Heading level={1}>Claude Code{" "}<Mark>Beyond</Mark>{" "}the Prompt</Heading>
         <Stack gap="md">
-          <Text size="lg"><Text as="strong" size="lg">{subtitle}.</Text> Move from one-off prompts to skills, workflows and supervised agents you can test, share and trust.</Text>
+          <Text size="lg" class="max-w-xl"><Text as="strong" size="lg">{subtitle}.</Text> Move from one-off prompts to skills, workflows and supervised agents you can test, share and trust.</Text>
           <Text tone="muted">By {author} · A practical field guide to agentic engineering with Claude and Claude Code.</Text>
         </Stack>
         <CtaGroup links={buy} />

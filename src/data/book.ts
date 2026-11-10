@@ -3,11 +3,12 @@
 
 export const book = {
   title: 'Claude Code Beyond the Prompt',
-  subtitle: 'Build reusable skills and agentic workflows',
+  subtitle: 'Build reusable agent skills, agentic workflows, and AI agents',
   author: 'Martin Krause',
   publisher: 'Packt',
-  release: '2026-11-10',
-  releaseLabel: 'November 10, 2026',
+  publisherUrl: 'https://packtpub.com/',
+  release: '2026-11',
+  releaseLabel: 'late November 2026',
   formats: ['Print', 'eBook'],
   repo: 'https://github.com/PacktPublishing/Claude-Beyond-Prompting',
   buy: [
@@ -21,6 +22,7 @@ export const nav = [
   { href: '#preface', label: 'Preface' },
   { href: '#contents', label: 'Contents' },
   { href: '#author', label: 'Author' },
+  { href: '#publisher', label: 'Publisher' },
 ];
 
 // The progression shown on the cover: prompts → skills → workflows → agentic systems.
@@ -107,3 +109,28 @@ export const authorBio = [
   'Martin Krause is an AI consultant, full-stack solution architect and engineering leader with over 20 years of experience delivering scalable digital platforms and advising global organisations.',
   'Trained at Oxford Saïd Business School and LSE-certified in AI ethics, he applies AI and modern architectures to real-world business challenges. He writes regularly for Germany’s largest IT magazine, is the author of The Complete Developer, and builds AI-driven products that bridge cutting-edge technology with practical impact.',
 ];
+
+// Publisher section. Series, ISBN and the free-PDF offer are taken from the final print cover.
+export const publisherInfo = {
+  bio: [
+    'Packt publishes practical books, eBooks and video courses for developers and IT professionals, written by people who do the work they write about.',
+  ],
+  record: [
+    { value: '10,000+', label: 'titles published', text: 'Across software engineering, AI, cloud, cybersecurity and the newest frameworks.' },
+    { value: '$1M+', label: 'given to open source', text: 'Through its Open Source Project Royalty scheme, a share of book sales goes back to the projects the books cover.' },
+  ],
+  series: {
+    name: 'Expert Insight',
+    intro: 'Claude Code Beyond the Prompt is part of Expert Insight, Packt’s premium line for practitioners who are past the basics and want professional depth.',
+    points: [
+      { term: 'Written for experienced readers.', text: 'Intermediate and senior developers, architects, DevOps engineers and data professionals.' },
+      { term: 'Focused on real-world decisions.', text: 'Architecture, trade-offs, scaling and the reasoning behind a choice, not syntax walkthroughs.' },
+      { term: 'Known for depth.', text: 'Readers regularly single out the series for going further, and in more detail, than typical technical titles.' },
+    ],
+  },
+  details: [
+    { term: 'ISBN (print)', text: '978-1-83664-317-3' },
+    { term: 'Formats', text: 'Print and eBook' },
+  ],
+  freePdf: 'https://packtpub.com/unlock/9781807782290',
+};

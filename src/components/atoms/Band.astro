@@ -1,5 +1,5 @@
 ---
-interface Props { tone?: 'ink' | 'panel'; id?: string; label?: string }
-const { tone = 'ink', id, label } = Astro.props;
+interface Props { tone?: 'ink' | 'panel'; id?: string; label?: string; spacious?: boolean }
+const { tone = 'ink', id, label, spacious = false } = Astro.props;
 ---
-<section id={id} aria-labelledby={label} class:list={['py-20 sm:py-24 border-t border-line', tone === 'panel' ? 'bg-panel' : 'bg-ink']}><slot /></section>
+<section id={id} aria-labelledby={label} class:list={['relative isolate overflow-hidden border-t border-line', spacious ? 'py-24 sm:py-32' : 'py-20 sm:py-24', tone === 'panel' ? 'bg-panel' : 'bg-ink']}><slot /></section>

@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* Design tokens — taken from the book cover (black, Packt orange, condensed display type) */
+/* Design tokens — taken from the final book cover (midnight navy, Packt orange, blue/orange light wave, heavy geometric type) */
 @theme {
-  --color-ink: #0a0a0a;
-  --color-panel: #141414;
-  --color-panel-2: #1c1c1c;
-  --color-line: #2c2c2c;
-  --color-accent: #ff5f2e;
-  --color-accent-strong: #ff7a4d;
-  --color-muted: #a8a8a8;
+  --color-ink: #020917;
+  --color-panel: #08111f;
+  --color-panel-2: #0d1829;
+  --color-line: #1b273b;
+  --color-accent: #f47423;
+  --color-accent-strong: #ff8c42;
+  --color-wave: #2db7ff;
+  --color-muted: #a3adbd;
   --color-snow: #fafafa;
-  --color-terminal: #111111;
+  --color-terminal: #050c18;
   --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-display: "Barlow Condensed", "Arial Narrow", "Inter", sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 

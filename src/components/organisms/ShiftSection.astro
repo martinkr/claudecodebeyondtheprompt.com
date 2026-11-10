@@ -23,7 +23,7 @@ const { steps } = Astro.props;
         This book follows one path from there to supervised agents, one level at a time.
       </SectionIntro>
       <Grid cols={4} gap="lg">
-        {steps.map((s, i) => <LadderStep step={s.step} title={s.title} chapters={s.chapters} filled={i === steps.length - 1}>{s.text}</LadderStep>)}
+        {steps.map((s) => <LadderStep step={s.step} title={s.title} chapters={s.chapters}>{s.text}</LadderStep>)}
       </Grid>
       <Blockquote>
         <Text size="lg">Don’t start by asking “Can I make this an agent?” Ask “What loop does this task need?”</Text>

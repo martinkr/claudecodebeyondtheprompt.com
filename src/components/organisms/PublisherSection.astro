@@ -1,0 +1,80 @@
+---
+// Organism: about the publisher, edition details and the free-PDF offer printed on the back cover.
+import Band from '../atoms/Band.astro';
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Surface from '../atoms/Surface.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import Mark from '../atoms/Mark.astro';
+import Link from '../atoms/Link.astro';
+import List from '../atoms/List.astro';
+import ButtonLink from '../atoms/ButtonLink.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+import DefinitionItem from '../molecules/DefinitionItem.astro';
+import CtaGroup from '../molecules/CtaGroup.astro';
+
+interface Props {
+  name: string;
+  href: string;
+  bio: string[];
+  record: { value: string; label: string; text: string }[];
+  series: { name: string; intro: string; points: { term: string; text: string }[] };
+  details: { term: string; text: string }[];
+  freePdf: string;
+  buy: { label: string; href: string }[];
+  release: string;
+}
+const { name, href, bio, record, series, details, freePdf, buy, release } = Astro.props;
+---
+<Band id="publisher" label="publisher-title">
+  <Container>
+    <Grid cols={2} gap="lg" align="center">
+      <Stack gap="lg">
+        <SectionIntro id="publisher-title" eyebrow="The publisher">
+          <Fragment slot="title">Published by <Mark>{name}</Mark></Fragment>
+        </SectionIntro>
+        {bio.map((p) => <Text tone="muted">{p}</Text>)}
+        <Grid cols={2}>
+          {record.map((r) => (
+            <Surface>
+              <Stack gap="xs">
+                <span class="font-display text-4xl font-extrabold tracking-tight text-accent leading-none pb-2">{r.value}</span>
+                <Text as="strong" size="sm">{r.label}</Text>
+                <Text tone="muted" size="sm">{r.text}</Text>
+              </Stack>
+            </Surface>
+          ))}
+        </Grid>
+        <Stack gap="sm" class="border-l-4 border-accent pl-4">
+          <Heading level={3} size="sm">The <Mark>{series.name}</Mark> series</Heading>
+          <Text tone="muted">{series.intro}</Text>
+          <List plain spacing="sm">
+            {series.points.map((p) => <DefinitionItem term={p.term}>{p.text}</DefinitionItem>)}
+          </List>
+        </Stack>
+        <List plain spacing="md">
+          {details.map((d) => <DefinitionItem term={d.term}>{d.text}</DefinitionItem>)}
+        </List>
+        <Text size="sm">More books at <Link href={href}>packtpub.com</Link></Text>
+      </Stack>
+      <Stack gap="md">
+        <Surface tone="accent">
+          <Stack gap="md" class="sm:p-4">
+            <Heading level={3} size="lg">Pre-order your copy</Heading>
+            <Text tone="muted">Out {release}. Pre-order now and get the book on release day.</Text>
+            <CtaGroup links={buy} />
+          </Stack>
+        </Surface>
+        <Surface>
+          <Stack gap="md" class="sm:p-4">
+            <Heading level={3} size="lg">Get a free PDF copy</Heading>
+            <Text tone="muted">Every copy of the book comes with a free PDF version. Unlock yours on Packt’s site with the link printed on the back cover.</Text>
+            <ButtonLink href={freePdf} variant="outline" external>Unlock your PDF</ButtonLink>
+          </Stack>
+        </Surface>
+      </Stack>
+    </Grid>
+  </Container>
+</Band>
